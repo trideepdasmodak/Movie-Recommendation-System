@@ -1,0 +1,244 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="FlimClubWeb.MasterPage" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>FilmClub</title>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/contactstyle.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/faqstyle.css" type="text/css" media="all" />
+    <link href="css/single.css" rel='stylesheet' type='text/css' />
+    <link href="css/medile.css" rel='stylesheet' type='text/css' />
+    <link href="css/jquery.slidey.min.css" rel="stylesheet" type='text/css' />
+    <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <link href="css/owl.carousel.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="js/owl.carousel.js"></script>
+    <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+
+        function validateLogin() {
+            var status = true;
+            if (document.getElementById('txtEmailId').value == '') {
+                document.getElementById('txtEmailId').style.background = '#ff000038';
+                status = false;
+            }
+            if (document.getElementById('txtPassword').value == '') {
+                document.getElementById('txtPassword').style.background = '#ff000038';
+                status = false;
+            }
+            return status;
+        }
+
+        function ErrorLogin() {
+            alert('User doesnot Exists!');
+        }
+
+        function validateRegister() {
+            var status = true;
+            if (document.getElementById('txtEmailIdRegister').value == '') {
+                document.getElementById('txtEmailIdRegister').style.background = '#ff000038';
+                status = false;
+            }
+            if (document.getElementById('txtPasswordRegister').value == '') {
+                document.getElementById('txtPasswordRegister').style.background = '#ff000038';
+                status = false;
+            }
+            if (document.getElementById('txtname').value == '') {
+                document.getElementById('txtname').style.background = '#ff000038';
+                status = false;
+            }
+            if (document.getElementById('txtDOB').value == '') {
+                document.getElementById('txtDOB').style.background = '#ff000038';
+                status = false;
+            }
+            return status;
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="header">
+            <div class="container">
+                <div class="w3layouts_logo">
+                    <a href="Home.aspx">
+                        <h1 style="font-size: 2.5em!important">Film<span style="font-weight: 600!important; letter-spacing: 8px!important; font-size: 0.6em!important; padding-top: 5px!important;">Club</span></h1>
+                    </a>
+                </div>
+                <div class="w3_search">
+                   
+                </div>
+                <div class="w3l_sign_in_register" id="divLogin" runat="server">
+                    <ul>
+                        <li><i class="fa fa-phone" aria-hidden="true"></i>(+91) 896 103 8031</li>
+                        <li><a id="LoginClick" href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
+                    </ul>
+                </div>
+                <div class="w3l_sign_in_register" id="divlogout" runat="server">
+                    <ul>
+                        <asp:Button ID="btnLogout" CssClass="btn btn-warning" OnClick="btnLogout_Click" Style="float: right;" runat="server" Text="Logout" />
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Sign In & Sign Up
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <section>
+                        <div class="modal-body">
+                            <div class="w3_login_module">
+                                <div class="module form-module">
+                                    <div class="toggle">
+                                        <i class="fa fa-times fa-pencil"></i>
+                                        <div class="tooltip">Click Me</div>
+                                    </div>
+                                    <div class="form">
+                                        <h3>Login to your account</h3>
+                                        <div>
+                                            <asp:TextBox ID="txtEmailId" ClientIDMode="Static" CssClass="form-control" placeholder="EmailId" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txtPassword" ClientIDMode="Static" CssClass="form-control" placeholder="Password" TextMode="Password" runat="server"></asp:TextBox>
+                                            <asp:Button ID="btnLogin" ClientIDMode="Static" OnClientClick="return validateLogin()" CausesValidation="false" runat="server" OnClick="btnLogin_Click" Text="Sign In" />
+                                        </div>
+                                    </div>
+                                    <div class="form">
+                                        <h3>Create an account</h3>
+                                        <div>
+                                            <asp:TextBox ID="txtEmailIdRegister" ClientIDMode="Static" TextMode="Email" CssClass="form-control" placeholder="EmailId" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txtPasswordRegister" ClientIDMode="Static" CssClass="form-control" placeholder="Password" TextMode="Password" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txtname" ClientIDMode="Static" CssClass="form-control" placeholder="Name" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txtDOB" ClientIDMode="Static" TextMode="Date" CssClass="form-control" placeholder="DD/MM/YYYY" runat="server"></asp:TextBox>
+                                            <div style="height:20px;"></div>
+                                            <asp:DropDownList ID="ddlGender" CssClass="form-control" runat="server">
+                                                <asp:ListItem Text="Male" Value="M"></asp:ListItem>
+                                                <asp:ListItem Text="FeMale" Value="F"></asp:ListItem>
+                                            </asp:DropDownList>
+                                            <div style="height:20px;"></div>
+                                            <asp:FileUpload ID="fileUploadImage" CssClass="form-control" runat="server" />
+                                            <div style="height:20px;"></div>
+                                            <asp:Button ID="btnRegister" ClientIDMode="Static" OnClientClick="return validateRegister()" OnClick="btnRegister_Click" CausesValidation="false" runat="server" Text="Sign Up" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <script>
+            $('.toggle').click(function () {
+                // Switches the Icon
+                $(this).children('i').toggleClass('fa-pencil');
+                // Switches the forms
+                $('.form').animate({
+                    height: "toggle",
+                    'padding-top': 'toggle',
+                    'padding-bottom': 'toggle',
+                    opacity: "toggle"
+                }, "slow");
+            });
+        </script>
+        <div class="movies_nav">
+            <div class="container">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header navbar-left">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                        <nav>
+                            <ul class="nav navbar-nav">
+                                <li><a href="Home.aspx">Home</a></li>
+                                <li><a href="Movies.aspx">Movies</a></li>
+                                <li runat="server" id="Userprofile"><a href="Profile.aspx">Acount</a></li>
+                                <li><a href="AboutUs.aspx">About</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="general_social_icons">
+            <nav class="social">
+                <ul>
+                    <li class="w3_twitter"><a href="#">Twitter <i class="fa fa-twitter"></i></a></li>
+                    <li class="w3_facebook"><a href="#">Facebook <i class="fa fa-facebook"></i></a></li>
+                    <li class="w3_g_plus"><a href="#">Google+ <i class="fa fa-google-plus"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="footer">
+            <div class="container">
+                <div class="w3ls_footer_grid">
+                    <div class="col-md-6 w3ls_footer_grid_left">
+                        <div class="w3ls_footer_grid_left1">
+                            <h2>Subscribe to us</h2>
+                            <div class="w3ls_footer_grid_left1_pos">
+                                <asp:TextBox ID="TextBoxemailsubscribe" TextMode="Email" placeholder="Your email..." runat="server"></asp:TextBox>
+                                <asp:Button ID="btnsubsend" OnClick="btnsubsend_Click" runat="server" Text="Send" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 w3ls_footer_grid_right">
+                        <a href="Home.aspx">
+                            <h2 style="font-size: 2.5em!important; padding-right: 1.9em!important;">Film<span style="font-weight: 600!important; letter-spacing: 8px!important; font-size: 0.6em!important; padding-top: 5px!important;">Club</span></h2>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-5 w3ls_footer_grid1_left">
+                    <p>&copy; 2010 Film Club. All rights reserved | Design by Techno India Students</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </form>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $().UItoTop({ easingType: 'easeOutQuart' });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterAdmin.master.cs" Inherits="FlimClubWeb.MasterAdmin" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>FilmClub</title>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/contactstyle.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/faqstyle.css" type="text/css" media="all" />
+    <link href="css/single.css" rel='stylesheet' type='text/css' />
+    <link href="css/medile.css" rel='stylesheet' type='text/css' />
+    <link href="css/jquery.slidey.min.css" rel="stylesheet" type='text/css' />
+    <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <link href="css/owl.carousel.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="js/owl.carousel.js"></script>
+    <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="header">
+            <div class="container">
+                <div class="w3layouts_logo">
+                    <a href="AdminMovies.aspx">
+                        <h1 style="font-size: 2.5em!important">Film<span style="font-weight: 600!important; letter-spacing: 8px!important; font-size: 0.6em!important; padding-top: 5px!important;">Club</span></h1>
+                    </a>
+                </div>
+                <div class="w3_search">
+                </div>
+                <div class="w3l_sign_in_register" runat="server">
+                    <ul>
+                        <asp:Button ID="btnLogout" CssClass="btn btn-warning" OnClick="btnLogout_Click" style="float: right;" runat="server" Text="Logout" />
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="movies_nav">
+            <div class="container">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header navbar-left">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                        <nav>
+                            <ul class="nav navbar-nav">
+                                <li><a href="AdminMovies.aspx">Movies</a></li>
+                                <li><a href="AdminUser.aspx">User</a></li>
+                                <li><a href="AdminSubs.aspx">Subscriber</a></li>
+                                <li><a href="AdminAddMovies.aspx">Add Movies</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="footer">
+            <div class="container">
+                <div class="col-md-5 w3ls_footer_grid1_left">
+                    <p>&copy; 2010 Film Club. All rights reserved | Design by Sushovan Mukherjee</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </form>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $().UItoTop({ easingType: 'easeOutQuart' });
+        });
+    </script>
+</body>
+</html>
